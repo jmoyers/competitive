@@ -2,3 +2,4 @@
 **/.brain
 **/env
 **/__pycache__
+**/build
