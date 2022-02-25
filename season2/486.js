@@ -27,8 +27,5 @@ const PredictTheWinner = (nums) => {
     return false;
   };
 
-  return (
-    dfs(nums, 0, nums.length - 1, 0, 0, false) ||
-    dfs(nums, 0, nums.length - 2, nums[nums.length - 1], 0, false)
-  );
+  return dfs(nums, 0, nums.length - 1, 0, 0, true);
 };
