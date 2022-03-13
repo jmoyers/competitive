@@ -2,31 +2,23 @@
  * @param {string} s
  * @return {boolean}
  */
-const isValid = (s) => {
+var isValid = function(s) {
+  // ()(()())
+  // 
+  
   const stack = [];
+  const opens = new Set(['(', '{', '[']);
   
   for (const c of s) {
-    
-    if (c === "(" || c === "[" || c === "{") {
+    if (opens.has(c)) {
       stack.push(c);
-    }
-    
-    if (c === ")" && stack.length && stack[stack.length - 1] === "(") {
-      stack.pop();
-    } else if (c === ")") {
+      continue;
+    } else if (stack.length) {
+      if (c === ')' && stack.pop() === '(') continue;
+      if (c === '}' && stack.pop() === '{') continue;
+      if (c === ']' && stack.pop() === '[') continue;
       return false;
-    }
-    
-    
-    if (c === "}" && stack.length && stack[stack.length - 1] === "{") {
-      stack.pop();
-    } else if (c === "}") {
-      return false;
-    }
-    
-    if (c === "]" && stack.length && stack[stack.length - 1] === "[") {
-      stack.pop();
-    } else if (c === "]") {
+    } else {
       return false;
     }
   }
